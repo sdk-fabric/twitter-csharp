@@ -1,0 +1,9 @@
+{
+  "type": "client-csharp",
+  "require": {
+    "sdkfabric/twitter": {
+      "target": "./src/SdkFabric.",
+      "namespace": "SdkFabric."
+    }
+  }
+}
