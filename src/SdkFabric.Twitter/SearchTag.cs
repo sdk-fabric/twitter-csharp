@@ -19,7 +19,7 @@ public class SearchTag : TagAbstract {
     }
 
 
-    public async Task<TweetCollectionResponse> GetRecent(string query, string startTime, string endTime, string sinceId, string untilId, string sortOrder, string expansions, int maxResults, Fields fields)
+    public async Task<TweetCollection> GetRecent(string query, string startTime, string endTime, string sinceId, string untilId, string sortOrder, string expansions, int maxResults, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
 
@@ -44,7 +44,7 @@ public class SearchTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollectionResponse>(response.Content);
+            return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
         if (response.ErrorException != null)

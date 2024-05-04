@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class HideReplyResponse
 {
     [JsonPropertyName("data")]
-    public HideReplyUpdate? Data { get; set; }
+    public HideReply? Data { get; set; }
 }

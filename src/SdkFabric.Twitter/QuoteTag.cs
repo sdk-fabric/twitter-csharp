@@ -22,7 +22,7 @@ public class QuoteTag : TagAbstract {
     /**
      * Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
      */
-    public async Task<TweetCollectionResponse> GetAll(string tweetId, string exclude, string expansions, int maxResults, string paginationToken, Fields fields)
+    public async Task<TweetCollection> GetAll(string tweetId, string exclude, string expansions, int maxResults, string paginationToken, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("tweet_id", tweetId);
@@ -44,7 +44,7 @@ public class QuoteTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollectionResponse>(response.Content);
+            return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
         if (response.ErrorException != null)

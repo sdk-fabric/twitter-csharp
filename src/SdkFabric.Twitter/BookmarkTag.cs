@@ -22,7 +22,7 @@ public class BookmarkTag : TagAbstract {
     /**
      * Allows you to get an authenticated user&#039;s 800 most recent bookmarked Tweets.
      */
-    public async Task<TweetCollectionResponse> GetAll(string userId, string expansions, int maxResults, string paginationToken, Fields fields)
+    public async Task<TweetCollection> GetAll(string userId, string expansions, int maxResults, string paginationToken, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("user_id", userId);
@@ -43,7 +43,7 @@ public class BookmarkTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollectionResponse>(response.Content);
+            return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
         if (response.ErrorException != null)

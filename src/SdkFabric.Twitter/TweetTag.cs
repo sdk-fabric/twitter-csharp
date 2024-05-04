@@ -22,7 +22,7 @@ public class TweetTag : TagAbstract {
     /**
      * Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
      */
-    public async Task<TweetCollectionResponse> GetAll(string ids, string expansions, Fields fields)
+    public async Task<TweetCollection> GetAll(string ids, string expansions, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
 
@@ -41,7 +41,7 @@ public class TweetTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollectionResponse>(response.Content);
+            return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
         if (response.ErrorException != null)
@@ -58,7 +58,7 @@ public class TweetTag : TagAbstract {
     /**
      * Returns a variety of information about a single Tweet specified by the requested ID.
      */
-    public async Task<TweetEntityResponse> Get(string tweetId, string expansions, Fields fields)
+    public async Task<TweetEntity> Get(string tweetId, string expansions, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("tweet_id", tweetId);
@@ -77,7 +77,7 @@ public class TweetTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetEntityResponse>(response.Content);
+            return this.Parser.Parse<TweetEntity>(response.Content);
         }
 
         if (response.ErrorException != null)
@@ -160,7 +160,7 @@ public class TweetTag : TagAbstract {
     /**
      * Hides or unhides a reply to a Tweet.
      */
-    public async Task<HideReplyResponse> HideReply(string tweetId, HideReplyUpdate payload)
+    public async Task<HideReplyResponse> HideReply(string tweetId, HideReply payload)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("tweet_id", tweetId);

@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class TweetCreateResponse
 {
     [JsonPropertyName("data")]
-    public TweetCreateResponseMessage? Data { get; set; }
+    public TweetCreate? Data { get; set; }
 }

@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class LikeResponse
 {
     [JsonPropertyName("data")]
-    public LikeResponseMessage? Data { get; set; }
+    public Like? Data { get; set; }
 }

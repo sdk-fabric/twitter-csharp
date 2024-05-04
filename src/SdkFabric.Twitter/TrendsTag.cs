@@ -22,7 +22,7 @@ public class TrendsTag : TagAbstract {
     /**
      * The Trends lookup endpoint allow developers to get the Trends for a location, specified using the where-on-earth id (WOEID).
      */
-    public async Task<TrendsResponse> ByWoeid(string woeid)
+    public async Task<TrendCollection> GetByWoeid(string woeid)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("woeid", woeid);
@@ -38,7 +38,7 @@ public class TrendsTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TrendsResponse>(response.Content);
+            return this.Parser.Parse<TrendCollection>(response.Content);
         }
 
         if (response.ErrorException != null)

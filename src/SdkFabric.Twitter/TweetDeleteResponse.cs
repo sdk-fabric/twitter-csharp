@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class TweetDeleteResponse
 {
     [JsonPropertyName("data")]
-    public TweetDeleteResponseMessage? Data { get; set; }
+    public TweetDelete? Data { get; set; }
 }

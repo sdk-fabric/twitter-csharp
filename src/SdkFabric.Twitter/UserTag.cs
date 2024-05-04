@@ -19,7 +19,7 @@ public class UserTag : TagAbstract {
     }
 
 
-    public async Task<TweetCollectionResponse> GetTimeline(string userId, string startTime, string endTime, string sinceId, string untilId, string exclude, string expansions, int maxResults, string paginationToken, Fields fields)
+    public async Task<TweetCollection> GetTimeline(string userId, string startTime, string endTime, string sinceId, string untilId, string exclude, string expansions, int maxResults, string paginationToken, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("user_id", userId);
@@ -45,7 +45,7 @@ public class UserTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollectionResponse>(response.Content);
+            return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
         if (response.ErrorException != null)
@@ -62,7 +62,7 @@ public class UserTag : TagAbstract {
     /**
      * Tweets liked by a user
      */
-    public async Task<TweetCollectionResponse> GetLikedTweets(string userId, string expansions, int maxResults, string paginationToken, Fields fields)
+    public async Task<TweetCollection> GetLikedTweets(string userId, string expansions, int maxResults, string paginationToken, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("user_id", userId);
@@ -83,7 +83,7 @@ public class UserTag : TagAbstract {
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollectionResponse>(response.Content);
+            return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
         if (response.ErrorException != null)
@@ -146,6 +146,39 @@ public class UserTag : TagAbstract {
         if (response.IsSuccessful)
         {
             return this.Parser.Parse<LikeResponse>(response.Content);
+        }
+
+        if (response.ErrorException != null)
+        {
+            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
+        }
+
+        throw (int) response.StatusCode switch
+        {
+            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
+        };
+    }
+
+    public async Task<UserCollection> FindByName(string usernames, string expansions, Fields fields)
+    {
+        Dictionary<string, object> pathParams = new();
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("usernames", usernames);
+        queryParams.Add("expansions", expansions);
+        queryParams.Add("fields", fields);
+
+        List<string> queryStructNames = new();
+        queryStructNames.Add('fields'),
+
+        RestRequest request = new(this.Parser.Url("/2/users/by", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            return this.Parser.Parse<UserCollection>(response.Content);
         }
 
         if (response.ErrorException != null)

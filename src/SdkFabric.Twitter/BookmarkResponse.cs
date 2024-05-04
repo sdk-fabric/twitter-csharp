@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class BookmarkResponse
 {
     [JsonPropertyName("data")]
-    public BookmarkResponseMessage? Data { get; set; }
+    public Bookmark? Data { get; set; }
 }
