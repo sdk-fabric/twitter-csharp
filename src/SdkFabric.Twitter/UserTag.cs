@@ -100,6 +100,9 @@ public class UserTag : TagAbstract {
         };
     }
 
+    /**
+     * Allows a user or authenticated user ID to unlike a Tweet.
+     */
     public async Task<LikeResponse> RemoveLike(string userId, string tweetId)
     {
         Dictionary<string, object> pathParams = new();
@@ -131,6 +134,9 @@ public class UserTag : TagAbstract {
         };
     }
 
+    /**
+     * Causes the user ID identified in the path parameter to Like the target Tweet.
+     */
     public async Task<LikeResponse> CreateLike(string userId, SingleTweet payload)
     {
         Dictionary<string, object> pathParams = new();
@@ -162,6 +168,9 @@ public class UserTag : TagAbstract {
         };
     }
 
+    /**
+     * Returns a variety of information about one or more users specified by their usernames.
+     */
     public async Task<UserCollection> FindByName(string usernames, string expansions, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
