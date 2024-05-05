@@ -19,6 +19,9 @@ public class UserTag : TagAbstract {
     }
 
 
+    /**
+     * Allows you to retrieve a collection of the most recent Tweets and Retweets posted by you and users you follow. This endpoint can return every Tweet created on a timeline over the last 7 days as well as the most recent 800 regardless of creation date.
+     */
     public async Task<TweetCollection> GetTimeline(string userId, string startTime, string endTime, string sinceId, string untilId, string exclude, string expansions, int maxResults, string paginationToken, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
@@ -36,7 +39,7 @@ public class UserTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields'),
+        queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/timelines/reverse_chronological", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
@@ -74,7 +77,7 @@ public class UserTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields'),
+        queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/liked_tweets", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
@@ -169,7 +172,7 @@ public class UserTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields'),
+        queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/users/by", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);

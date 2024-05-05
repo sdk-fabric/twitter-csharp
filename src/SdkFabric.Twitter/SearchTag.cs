@@ -35,7 +35,7 @@ public class SearchTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields'),
+        queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/tweets/search/recent", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
