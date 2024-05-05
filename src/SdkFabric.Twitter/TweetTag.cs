@@ -32,7 +32,7 @@ public class TweetTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields'),
+        queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/tweets", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
@@ -68,7 +68,7 @@ public class TweetTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields'),
+        queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/tweets/:tweet_id", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
