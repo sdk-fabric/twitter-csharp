@@ -19,22 +19,19 @@ public class SearchTag : TagAbstract {
     }
 
 
-    public async Task<TweetCollection> GetRecent(string query, string startTime, string endTime, string sinceId, string untilId, string sortOrder, string expansions, int maxResults, Fields fields)
+    public async Task<TweetCollection> GetRecent(string query, string sortOrder, string expansions, Pagination pagination, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
 
         Dictionary<string, object> queryParams = new();
         queryParams.Add("query", query);
-        queryParams.Add("start_time", startTime);
-        queryParams.Add("end_time", endTime);
-        queryParams.Add("since_id", sinceId);
-        queryParams.Add("until_id", untilId);
         queryParams.Add("sort_order", sortOrder);
         queryParams.Add("expansions", expansions);
-        queryParams.Add("max_results", maxResults);
+        queryParams.Add("pagination", pagination);
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
+        queryStructNames.Add('pagination');
         queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/tweets/search/recent", pathParams), Method.Get);

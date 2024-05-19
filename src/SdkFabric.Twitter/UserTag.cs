@@ -22,23 +22,19 @@ public class UserTag : TagAbstract {
     /**
      * Allows you to retrieve a collection of the most recent Tweets and Retweets posted by you and users you follow. This endpoint can return every Tweet created on a timeline over the last 7 days as well as the most recent 800 regardless of creation date.
      */
-    public async Task<TweetCollection> GetTimeline(string userId, string startTime, string endTime, string sinceId, string untilId, string exclude, string expansions, int maxResults, string paginationToken, Fields fields)
+    public async Task<TweetCollection> GetTimeline(string userId, string exclude, string expansions, Pagination pagination, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
         pathParams.Add("user_id", userId);
 
         Dictionary<string, object> queryParams = new();
-        queryParams.Add("start_time", startTime);
-        queryParams.Add("end_time", endTime);
-        queryParams.Add("since_id", sinceId);
-        queryParams.Add("until_id", untilId);
         queryParams.Add("exclude", exclude);
         queryParams.Add("expansions", expansions);
-        queryParams.Add("max_results", maxResults);
-        queryParams.Add("pagination_token", paginationToken);
+        queryParams.Add("pagination", pagination);
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
+        queryStructNames.Add('pagination');
         queryStructNames.Add('fields');
 
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/timelines/reverse_chronological", pathParams), Method.Get);

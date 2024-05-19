@@ -191,5 +191,41 @@ public class TweetTag : TagAbstract {
         };
     }
 
+    /**
+     * Allows you to get information about a Tweet’s liking users.
+     */
+    public async Task<UserCollection> GetLikingUsers(string tweetId, string expansions, int maxResults, string paginationToken)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("tweet_id", tweetId);
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("expansions", expansions);
+        queryParams.Add("max_results", maxResults);
+        queryParams.Add("pagination_token", paginationToken);
+
+        List<string> queryStructNames = new();
+
+        RestRequest request = new(this.Parser.Url("/2/tweets/:tweet_id/liking_users", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            return this.Parser.Parse<UserCollection>(response.Content);
+        }
+
+        if (response.ErrorException != null)
+        {
+            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
+        }
+
+        throw (int) response.StatusCode switch
+        {
+            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
+        };
+    }
+
 
 }
