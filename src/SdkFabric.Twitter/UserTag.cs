@@ -20,6 +20,78 @@ public class UserTag : TagAbstract {
 
 
     /**
+     * Returns a variety of information about one or more users specified by the requested IDs.
+     */
+    public async Task<UserCollection> GetAll(string ids, string expansions, Fields fields)
+    {
+        Dictionary<string, object> pathParams = new();
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("ids", ids);
+        queryParams.Add("expansions", expansions);
+        queryParams.Add("fields", fields);
+
+        List<string> queryStructNames = new();
+        queryStructNames.Add("fields");
+
+        RestRequest request = new(this.Parser.Url("/2/users", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            return this.Parser.Parse<UserCollection>(response.Content);
+        }
+
+        if (response.ErrorException != null)
+        {
+            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
+        }
+
+        throw (int) response.StatusCode switch
+        {
+            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
+        };
+    }
+
+    /**
+     * Returns a variety of information about a single user specified by the requested ID.
+     */
+    public async Task<User> Get(string userId, string expansions, Fields fields)
+    {
+        Dictionary<string, object> pathParams = new();
+        pathParams.Add("user_id", userId);
+
+        Dictionary<string, object> queryParams = new();
+        queryParams.Add("expansions", expansions);
+        queryParams.Add("fields", fields);
+
+        List<string> queryStructNames = new();
+        queryStructNames.Add("fields");
+
+        RestRequest request = new(this.Parser.Url("/2/users/:user_id", pathParams), Method.Get);
+        this.Parser.Query(request, queryParams, queryStructNames);
+
+        RestResponse response = await this.HttpClient.ExecuteAsync(request);
+
+        if (response.IsSuccessful)
+        {
+            return this.Parser.Parse<User>(response.Content);
+        }
+
+        if (response.ErrorException != null)
+        {
+            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
+        }
+
+        throw (int) response.StatusCode switch
+        {
+            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
+        };
+    }
+
+    /**
      * Allows you to retrieve a collection of the most recent Tweets and Retweets posted by you and users you follow. This endpoint can return every Tweet created on a timeline over the last 7 days as well as the most recent 800 regardless of creation date.
      */
     public async Task<TweetCollection> GetTimeline(string userId, string exclude, string expansions, Pagination pagination, Fields fields)
