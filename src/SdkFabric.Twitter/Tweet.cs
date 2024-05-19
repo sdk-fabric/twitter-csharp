@@ -25,4 +25,8 @@ public class Tweet
     public string? ReplySettings { get; set; }
     [JsonPropertyName("text")]
     public string? Text { get; set; }
+    [JsonPropertyName("possibly_sensitive")]
+    public bool? PossiblySensitive { get; set; }
+    [JsonPropertyName("lang")]
+    public string? Lang { get; set; }
 }
