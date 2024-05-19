@@ -34,8 +34,8 @@ public class UserTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('pagination');
-        queryStructNames.Add('fields');
+        queryStructNames.Add("pagination");
+        queryStructNames.Add("fields");
 
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/timelines/reverse_chronological", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
@@ -73,7 +73,7 @@ public class UserTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields');
+        queryStructNames.Add("fields");
 
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/liked_tweets", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
@@ -177,7 +177,7 @@ public class UserTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields');
+        queryStructNames.Add("fields");
 
         RestRequest request = new(this.Parser.Url("/2/users/by", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);

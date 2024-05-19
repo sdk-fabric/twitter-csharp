@@ -33,7 +33,7 @@ public class BookmarkTag : TagAbstract {
         queryParams.Add("fields", fields);
 
         List<string> queryStructNames = new();
-        queryStructNames.Add('fields');
+        queryStructNames.Add("fields");
 
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/bookmarks", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
