@@ -44,11 +44,6 @@ public class TweetTag : TagAbstract {
             return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
-        }
-
         throw (int) response.StatusCode switch
         {
             _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
@@ -80,11 +75,6 @@ public class TweetTag : TagAbstract {
             return this.Parser.Parse<TweetEntity>(response.Content);
         }
 
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
-        }
-
         throw (int) response.StatusCode switch
         {
             _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
@@ -113,11 +103,6 @@ public class TweetTag : TagAbstract {
             return this.Parser.Parse<TweetCreateResponse>(response.Content);
         }
 
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
-        }
-
         throw (int) response.StatusCode switch
         {
             _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
@@ -144,11 +129,6 @@ public class TweetTag : TagAbstract {
         if (response.IsSuccessful)
         {
             return this.Parser.Parse<TweetDeleteResponse>(response.Content);
-        }
-
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
         }
 
         throw (int) response.StatusCode switch
@@ -180,11 +160,6 @@ public class TweetTag : TagAbstract {
             return this.Parser.Parse<HideReplyResponse>(response.Content);
         }
 
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
-        }
-
         throw (int) response.StatusCode switch
         {
             _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
@@ -214,11 +189,6 @@ public class TweetTag : TagAbstract {
         if (response.IsSuccessful)
         {
             return this.Parser.Parse<UserCollection>(response.Content);
-        }
-
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
         }
 
         throw (int) response.StatusCode switch

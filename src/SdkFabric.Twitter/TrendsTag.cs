@@ -41,11 +41,6 @@ public class TrendsTag : TagAbstract {
             return this.Parser.Parse<TrendCollection>(response.Content);
         }
 
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
-        }
-
         throw (int) response.StatusCode switch
         {
             _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),

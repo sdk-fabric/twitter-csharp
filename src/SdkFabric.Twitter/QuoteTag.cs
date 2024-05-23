@@ -47,11 +47,6 @@ public class QuoteTag : TagAbstract {
             return this.Parser.Parse<TweetCollection>(response.Content);
         }
 
-        if (response.ErrorException != null)
-        {
-            throw new ClientException("An unknown error occurred: " + response.ErrorException.Message, response.ErrorException);
-        }
-
         throw (int) response.StatusCode switch
         {
             _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),

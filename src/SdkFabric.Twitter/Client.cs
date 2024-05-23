@@ -76,6 +76,14 @@ public class Client : ClientAbstract
         );
     }
 
+    public RetweetTag Retweet()
+    {
+        return new RetweetTag(
+            this.HttpClient,
+            this.Parser
+        );
+    }
+
 
 
     public static Client Build(string token)
