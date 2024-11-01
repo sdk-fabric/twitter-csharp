@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class TrendCollection
 {
     [JsonPropertyName("data")]
-    public List<Trend>? Data { get; set; }
+    public System.Collections.Generic.List<Trend>? Data { get; set; }
 }

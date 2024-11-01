@@ -8,7 +8,7 @@ namespace SdkFabric.Twitter;
 public class TweetMedia
 {
     [JsonPropertyName("media_ids")]
-    public List<string>? MediaIds { get; set; }
+    public System.Collections.Generic.List<string>? MediaIds { get; set; }
     [JsonPropertyName("tagged_user_ids")]
-    public List<string>? TaggedUserIds { get; set; }
+    public System.Collections.Generic.List<string>? TaggedUserIds { get; set; }
 }

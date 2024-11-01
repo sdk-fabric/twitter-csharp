@@ -37,17 +37,18 @@ public class SearchTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/2/tweets/search/recent", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollection>(response.Content);
+            var data = this.Parser.Parse<TweetCollection>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 
 

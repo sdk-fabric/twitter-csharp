@@ -38,19 +38,19 @@ public class BookmarkTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/bookmarks", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollection>(response.Content);
+            var data = this.Parser.Parse<TweetCollection>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
-
     public async Task<BookmarkResponse> Create(string userId, SingleTweet payload)
     {
         Dictionary<string, object> pathParams = new();
@@ -64,19 +64,20 @@ public class BookmarkTag : TagAbstract {
         this.Parser.Query(request, queryParams, queryStructNames);
         request.AddJsonBody(JsonSerializer.Serialize(payload));
 
+        request.AddOrUpdateHeader("Content-Type", "application/json");
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<BookmarkResponse>(response.Content);
+            var data = this.Parser.Parse<BookmarkResponse>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
-
     public async Task<BookmarkResponse> Delete(string userId, string tweetId)
     {
         Dictionary<string, object> pathParams = new();
@@ -90,17 +91,18 @@ public class BookmarkTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/2/users/:user_id/bookmarks/:tweet_id", pathParams), Method.Delete);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<BookmarkResponse>(response.Content);
+            var data = this.Parser.Parse<BookmarkResponse>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 
 

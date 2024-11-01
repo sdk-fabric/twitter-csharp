@@ -10,5 +10,5 @@ public class TweetPoll
     [JsonPropertyName("duration_minutes")]
     public int? DurationMinutes { get; set; }
     [JsonPropertyName("options")]
-    public List<string>? Options { get; set; }
+    public System.Collections.Generic.List<string>? Options { get; set; }
 }

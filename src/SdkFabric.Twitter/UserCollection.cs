@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class UserCollection
 {
     [JsonPropertyName("data")]
-    public List<User>? Data { get; set; }
+    public System.Collections.Generic.List<User>? Data { get; set; }
 }
