@@ -19,6 +19,9 @@ public class RetweetTag : TagAbstract {
     }
 
 
+    /**
+     * Returns the Retweets for a given Tweet ID.
+     */
     public async Task<TweetCollection> GetAll(string tweetId, string expansions, int maxResults, Fields fields)
     {
         Dictionary<string, object> pathParams = new();
@@ -35,17 +38,18 @@ public class RetweetTag : TagAbstract {
         RestRequest request = new(this.Parser.Url("/2/tweets/:tweet_id/retweets", pathParams), Method.Get);
         this.Parser.Query(request, queryParams, queryStructNames);
 
+
         RestResponse response = await this.HttpClient.ExecuteAsync(request);
 
         if (response.IsSuccessful)
         {
-            return this.Parser.Parse<TweetCollection>(response.Content);
+            var data = this.Parser.Parse<TweetCollection>(response.Content);
+
+            return data;
         }
 
-        throw (int) response.StatusCode switch
-        {
-            _ => throw new UnknownStatusCodeException("The server returned an unknown status code"),
-        };
+        var statusCode = (int) response.StatusCode;
+        throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 
 

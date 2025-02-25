@@ -12,11 +12,11 @@ public class TweetDetails
     [JsonPropertyName("text")]
     public string? Text { get; set; }
     [JsonPropertyName("created_at")]
-    public DateTime? CreatedAt { get; set; }
+    public System.DateTime? CreatedAt { get; set; }
     [JsonPropertyName("author_id")]
     public string? AuthorId { get; set; }
     [JsonPropertyName("edit_history_tweet_ids")]
-    public List<string>? EditHistoryTweetIds { get; set; }
+    public System.Collections.Generic.List<string>? EditHistoryTweetIds { get; set; }
     [JsonPropertyName("conversation_id")]
     public string? ConversationId { get; set; }
     [JsonPropertyName("in_reply_to_user_id")]

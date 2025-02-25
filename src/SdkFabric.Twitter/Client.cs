@@ -90,4 +90,9 @@ public class Client : ClientAbstract
     {
         return new Client("https://api.twitter.com", new HttpBearer(token));
     }
+
+    public static Client BuildAnonymous()
+    {
+        return new Client("https://api.twitter.com", new Anonymous());
+    }
 }

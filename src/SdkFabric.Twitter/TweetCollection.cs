@@ -8,5 +8,5 @@ namespace SdkFabric.Twitter;
 public class TweetCollection
 {
     [JsonPropertyName("data")]
-    public List<TweetDetails>? Data { get; set; }
+    public System.Collections.Generic.List<TweetDetails>? Data { get; set; }
 }
