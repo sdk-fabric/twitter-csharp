@@ -4,29 +4,43 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class Tweet
 {
     [JsonPropertyName("direct_message_deep_link")]
     public string? DirectMessageDeepLink { get; set; }
+
     [JsonPropertyName("for_super_followers_only")]
     public bool? ForSuperFollowersOnly { get; set; }
+
     [JsonPropertyName("geo")]
     public TweetGeo? Geo { get; set; }
+
     [JsonPropertyName("media")]
     public TweetMedia? Media { get; set; }
+
     [JsonPropertyName("poll")]
     public TweetPoll? Poll { get; set; }
+
     [JsonPropertyName("quote_tweet_id")]
     public string? QuoteTweetId { get; set; }
+
     [JsonPropertyName("reply")]
     public TweetReply? Reply { get; set; }
+
     [JsonPropertyName("reply_settings")]
     public string? ReplySettings { get; set; }
+
     [JsonPropertyName("text")]
     public string? Text { get; set; }
+
     [JsonPropertyName("possibly_sensitive")]
     public bool? PossiblySensitive { get; set; }
+
     [JsonPropertyName("lang")]
     public string? Lang { get; set; }
+
 }
+

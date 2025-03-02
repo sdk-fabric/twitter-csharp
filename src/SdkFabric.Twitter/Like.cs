@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class Like
 {
     [JsonPropertyName("liked")]
     public string? Liked { get; set; }
+
 }
+

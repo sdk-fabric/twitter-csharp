@@ -4,15 +4,22 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetUsage
 {
     [JsonPropertyName("cap_reset_day")]
     public int? CapResetDay { get; set; }
+
     [JsonPropertyName("project_cap")]
     public string? ProjectCap { get; set; }
+
     [JsonPropertyName("project_id")]
     public string? ProjectId { get; set; }
+
     [JsonPropertyName("project_usage")]
     public string? ProjectUsage { get; set; }
+
 }
+

@@ -49,6 +49,13 @@ public class BookmarkTag : TagAbstract {
         }
 
         var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Errors>(response.Content);
+
+            throw new ErrorsException(data);
+        }
+
         throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
     public async Task<BookmarkResponse> Create(string userId, SingleTweet payload)
@@ -76,6 +83,13 @@ public class BookmarkTag : TagAbstract {
         }
 
         var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Errors>(response.Content);
+
+            throw new ErrorsException(data);
+        }
+
         throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
     public async Task<BookmarkResponse> Delete(string userId, string tweetId)
@@ -102,6 +116,13 @@ public class BookmarkTag : TagAbstract {
         }
 
         var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Errors>(response.Content);
+
+            throw new ErrorsException(data);
+        }
+
         throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 

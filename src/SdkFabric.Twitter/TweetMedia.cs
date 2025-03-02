@@ -4,11 +4,16 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetMedia
 {
     [JsonPropertyName("media_ids")]
     public System.Collections.Generic.List<string>? MediaIds { get; set; }
+
     [JsonPropertyName("tagged_user_ids")]
     public System.Collections.Generic.List<string>? TaggedUserIds { get; set; }
+
 }
+

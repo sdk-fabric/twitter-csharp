@@ -4,11 +4,16 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class Trend
 {
     [JsonPropertyName("trend_name")]
     public string? TrendName { get; set; }
+
     [JsonPropertyName("tweet_count")]
     public int? TweetCount { get; set; }
+
 }
+

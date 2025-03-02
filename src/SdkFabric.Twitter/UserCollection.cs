@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class UserCollection
 {
     [JsonPropertyName("data")]
     public System.Collections.Generic.List<User>? Data { get; set; }
+
 }
+

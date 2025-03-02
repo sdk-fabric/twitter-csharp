@@ -4,11 +4,16 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetPoll
 {
     [JsonPropertyName("duration_minutes")]
     public int? DurationMinutes { get; set; }
+
     [JsonPropertyName("options")]
     public System.Collections.Generic.List<string>? Options { get; set; }
+
 }
+

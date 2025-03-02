@@ -4,21 +4,31 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetDetails
 {
     [JsonPropertyName("id")]
     public string? Id { get; set; }
+
     [JsonPropertyName("text")]
     public string? Text { get; set; }
+
     [JsonPropertyName("created_at")]
     public System.DateTime? CreatedAt { get; set; }
+
     [JsonPropertyName("author_id")]
     public string? AuthorId { get; set; }
+
     [JsonPropertyName("edit_history_tweet_ids")]
     public System.Collections.Generic.List<string>? EditHistoryTweetIds { get; set; }
+
     [JsonPropertyName("conversation_id")]
     public string? ConversationId { get; set; }
+
     [JsonPropertyName("in_reply_to_user_id")]
     public string? InReplyToUserId { get; set; }
+
 }
+

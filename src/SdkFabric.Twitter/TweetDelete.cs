@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetDelete
 {
     [JsonPropertyName("deleted")]
     public bool? Deleted { get; set; }
+
 }
+

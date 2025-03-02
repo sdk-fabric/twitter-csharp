@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetGeo
 {
     [JsonPropertyName("place_id")]
     public string? PlaceId { get; set; }
+
 }
+

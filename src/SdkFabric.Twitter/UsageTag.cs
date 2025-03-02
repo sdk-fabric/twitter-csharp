@@ -44,6 +44,13 @@ public class UsageTag : TagAbstract {
         }
 
         var statusCode = (int) response.StatusCode;
+        if (statusCode >= 0 && statusCode <= 999)
+        {
+            var data = this.Parser.Parse<Errors>(response.Content);
+
+            throw new ErrorsException(data);
+        }
+
         throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
     }
 

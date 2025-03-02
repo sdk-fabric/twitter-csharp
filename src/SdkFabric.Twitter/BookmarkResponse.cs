@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class BookmarkResponse
 {
     [JsonPropertyName("data")]
     public Bookmark? Data { get; set; }
+
 }
+

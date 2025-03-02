@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TrendCollection
 {
     [JsonPropertyName("data")]
     public System.Collections.Generic.List<Trend>? Data { get; set; }
+
 }
+

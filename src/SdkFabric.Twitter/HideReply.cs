@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class HideReply
 {
     [JsonPropertyName("hidden")]
     public bool? Hidden { get; set; }
+
 }
+

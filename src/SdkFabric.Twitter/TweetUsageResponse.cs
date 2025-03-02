@@ -4,9 +4,13 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class TweetUsageResponse
 {
     [JsonPropertyName("data")]
     public TweetUsage? Data { get; set; }
+
 }
+

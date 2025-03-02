@@ -4,17 +4,25 @@
  */
 
 using System.Text.Json.Serialization;
+
 namespace SdkFabric.Twitter;
+
 public class User
 {
     [JsonPropertyName("created_at")]
     public string? CreatedAt { get; set; }
+
     [JsonPropertyName("id")]
     public string? Id { get; set; }
+
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+
     [JsonPropertyName("pinned_tweet_id")]
     public string? PinnedTweetId { get; set; }
+
     [JsonPropertyName("username")]
     public string? Username { get; set; }
+
 }
+
