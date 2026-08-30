@@ -1,9 +1,4 @@
 {
-  "typehub_user": "sdkfabric",
-  "typehub_document": "twitter",
-  "github_user": "sdk-fabric",
-  "github_repository": "twitter-csharp",
-
   "namespace": "SdkFabric.Twitter",
   "company": "Apioo",
   "description": "Twitter C# SDK managed by SDK Fabric",
